@@ -1,0 +1,13 @@
+{
+    "url": "https://your-nodebb-site.onrender.com",
+    "secret": "8a561405-a66c-4899-9153-ed655a27c29a",
+    "database": "mongo",
+    "mongo": {
+      "uri": "mongodb+srv://mutualfundpickr:6B1he9Tscfe1Pwmf@cluster0.8gg7tmx.mongodb.net/nodebb?retryWrites=true&w=majority"
+    },
+    "port": "4567",
+    "webpush": {
+      "subject": "mailto:admin@example.com"
+    }
+  }
+  
