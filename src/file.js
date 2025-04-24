@@ -128,13 +128,32 @@ file.link = async function link(filePath, destPath, relative) {
 	}
 };
 
-file.linkDirs = async function linkDirs(sourceDir, destDir, relative) {
-	if (relative && process.platform !== 'win32') {
-		sourceDir = path.relative(path.dirname(destDir), sourceDir);
+async function copyDir(sourceDir, destDir) {
+	await fs.promises.mkdir(destDir, { recursive: true });
+	const files = await fs.promises.readdir(sourceDir);
+	for (const file of files) {
+		const sourcePath = path.join(sourceDir, file);
+		const destPath = path.join(destDir, file);
+		const stat = await fs.promises.stat(sourcePath);
+		if (stat.isDirectory()) {
+			await copyDir(sourcePath, destPath);
+		} else {
+			await fs.promises.copyFile(sourcePath, destPath);
+		}
 	}
+}
 
-	const type = (process.platform === 'win32') ? 'junction' : 'dir';
-	await fs.promises.symlink(sourceDir, destDir, type);
+file.linkDirs = async function linkDirs(sourceDir, destDir, relative) {
+	if (process.platform === 'win32') {
+		// On Windows, copy files instead of creating symlinks
+		await copyDir(sourceDir, destDir);
+	} else {
+		// On Unix-like systems, use symlinks
+		if (relative) {
+			sourceDir = path.relative(path.dirname(destDir), sourceDir);
+		}
+		await fs.promises.symlink(sourceDir, destDir, 'dir');
+	}
 };
 
 file.typeToExtension = function (type) {

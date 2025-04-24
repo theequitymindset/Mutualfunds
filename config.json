@@ -1,5 +1,5 @@
 {
-    "url": "https://your-nodebb-site.onrender.com",
+    "url": "http://localhost:4567",
     "secret": "8a561405-a66c-4899-9153-ed655a27c29a",
     "database": "mongo",
     "mongo": {
