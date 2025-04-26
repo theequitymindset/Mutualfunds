@@ -1,11 +1,15 @@
 {
     "defaults": {
         "mongo": {
-            "host": "mongo",
+            "host": "cluster0.8gg7tmx.mongodb.net",
             "port": 27017,
             "database": "nodebb",
-            "username": "nodebb",
-            "password": "nodebb"
+            "username": "mutualfundpickr",
+            "password": "6B1he9Tscfe1Pwmf",
+            "options": {
+              "tls": true,
+              "tlsAllowInvalidCertificates": true
+            }
         },
         "redis": {
             "host": "redis",

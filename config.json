@@ -3,7 +3,11 @@
   "secret": "8a561405-a66c-4899-9153-ed655a27c29a",
   "database": "nodebb",
   "mongo": {
-    "uri": "mongodb+srv://mutualfundpickr:6B1he9Tscfe1Pwmf@cluster0.8gg7tmx.mongodb.net/nodebb?retryWrites=true&w=majority"
+  "host": "cluster0.8gg7tmx.mongodb.net",
+"port": 27017,
+"username": "mutualfundpickr",
+"password": "6B1he9Tscfe1Pwmf",
+"database": "nodebb" 
   },
   "port": "4567",
   "webpush": {
